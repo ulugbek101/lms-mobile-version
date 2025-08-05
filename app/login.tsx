@@ -1,5 +1,15 @@
 import React, {useEffect, useRef, useState} from "react";
-import {Animated, Keyboard, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View,} from "react-native";
+import {
+    Animated,
+    Image,
+    Keyboard,
+    SafeAreaView,
+    StyleSheet,
+    Text,
+    TextInput,
+    TouchableOpacity,
+    View
+} from "react-native";
 import {Feather} from "@expo/vector-icons"; // You need `expo install @expo/vector-icons`
 
 export default function LoginPage() {
@@ -28,8 +38,8 @@ export default function LoginPage() {
         const hideSub = Keyboard.addListener("keyboardDidHide", keyboardDidHide);
 
         return () => {
-            showSub.remove();
-            hideSub.remove();
+            showSub?.remove?.(); // ✅ Safe remove call
+            hideSub?.remove?.(); // ✅ Safe remove call
         };
     }, []);
 
@@ -37,7 +47,14 @@ export default function LoginPage() {
         <SafeAreaView style={styles.safeArea}>
             <View style={styles.fullScreenBg}>
                 <Animated.View style={[styles.outerContainer, {transform: [{translateY: offset}]}]}>
-                    <Text style={styles.title}>Tizimga kirish</Text>
+                    <View style={styles.headerContainer}>
+                        <Image
+                            source={require("../assets/images/logo.jpg")}
+                            style={styles.logo}
+                            resizeMode="contain"
+                        />
+                        <Text style={styles.title}>Tizimga kirish</Text>
+                    </View>
                     <View style={styles.innerContainer}>
                         <TextInput
                             placeholder="E-mail manzil"
@@ -126,5 +143,14 @@ const styles = StyleSheet.create({
     buttonText: {
         color: "#fff",
         fontWeight: "900",
+    },
+    headerContainer: {
+        alignItems: "center",
+        marginBottom: 24,
+    },
+    logo: {
+        width: 100,
+        height: 100,
+        marginBottom: 12,
     },
 });

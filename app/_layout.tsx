@@ -3,6 +3,7 @@ import {useFonts} from 'expo-font';
 import {Stack} from 'expo-router';
 import {StatusBar} from 'expo-status-bar';
 import 'react-native-reanimated';
+import '../styles/global.css';
 
 import {useColorScheme} from '@/hooks/useColorScheme';
 import AuthContextProvider from "@/hooks/auth-context";
@@ -26,7 +27,7 @@ export default function RootLayout() {
                     <Stack.Screen name="(protected)" options={{headerShown: false}}/>
                 </Stack>
             </AuthContextProvider>
-            <StatusBar style="auto"/>
+            <StatusBar style="light"/>
         </ThemeProvider>
     );
 }
